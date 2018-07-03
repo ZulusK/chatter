@@ -1,4 +1,8 @@
-[![Build Status](https://travis-ci.org/ZulusK/chatter.svg?branch=master)](https://travis-ci.org/ZulusK/chatter)
+| Master |  Dev    |
+| ------: | ------ |
+| [![Build Status][travis-master]](https://travis-ci.org/ZulusK/chatter) | [![Build Status][travis-dev]]
+(https://travis-ci.org/ZulusK/chatter) |
+
 [DEMO](https://chatter-job-task.herokuapp.com/)
 # Short Description
 The NodeJS app - a simple public chat. Where unauthenticated users can post text and everyone else can read them.
@@ -25,3 +29,6 @@ Posts stored in database, and users can get or create posts by using REST API.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+[travis-master]: https://travis-ci.org/ZulusK/chatter.svg?branch=master
+[tarvis-dev]:https://travis-ci.org/ZulusK/chatter.svg?branch=dev
