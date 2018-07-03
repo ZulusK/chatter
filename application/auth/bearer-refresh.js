@@ -8,7 +8,7 @@ const opts = {
     secretOrKey: config.get(`TOKEN_SALT_REFRESH`),
 };
 
-module.exports= new JWTStrategy(opts, async (req, jwt_payload, next) => {
+module.exports= new JWTStrategy(opts, async (jwt_payload, next) => {
     const user= await UserDriver.getByToken("refresh", jwt_payload);
     if (user) {
         next(null, user);

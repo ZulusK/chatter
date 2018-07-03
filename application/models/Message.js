@@ -2,9 +2,8 @@
 const mongoose=require("mongoose");
 
 const MessageSchema=mongoose.Schema({
-    authorId:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"User",
+    author:{
+        type: String,
         required:true,
     },
     text:{
@@ -14,8 +13,6 @@ const MessageSchema=mongoose.Schema({
 },{timestamps:true});
 
 MessageSchema.plugin(require("mongoose-paginate"));
-MessageSchema.index({authorId:1});
-
-
+MessageSchema.index({author:1});
 
 module.exports=mongoose.model("Message",MessageSchema);

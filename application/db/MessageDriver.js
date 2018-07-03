@@ -8,18 +8,21 @@ class MessageDriver extends AbstractDriver {
         super(MessageModel)
     }
 
-    async getByUser(authorId,options) {
+    async getByUser(author,options) {
         if(options) {
-            return this.findPaginated({authorId},options);
+            return this.findPaginated({author},options);
         }else{
-            return this.find({authorId});
+            return this.find({author});
         }
     }
 
-    create({text, authorId}) {
-        return super.create({text,authorId});
+    create({text, author}) {
+        return super.create({text,author});
     }
-
+    getPublicFields(doc){
+        const {text, author,_id:id,createdAt,updatedAt}=doc;
+        return {text,author,id,createdAt,updatedAt};
+    }
 }
 
 module.exports = new MessageDriver();

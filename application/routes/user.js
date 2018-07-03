@@ -39,4 +39,5 @@ router.post("/signup",[
 router.post("/signin",passport.authenticate(['basic'],{ session: false }),(req,res)=>{
     return res.json(req.user.generateJWT())
 });
+
 module.exports=router;
