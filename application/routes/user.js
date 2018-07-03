@@ -40,4 +40,13 @@ router.post("/signin",passport.authenticate(['basic'],{ session: false }),(req,r
     return res.json(req.user.generateJWT())
 });
 
+
+router.get("/access-token",passport.authenticate(["bearer-refresh"],{session:false}),(req,res)=>{
+    return res.json(req.user.generateAccessToken())
+});
+
+router.post("/logout",passport.authenticate(["bearer-access","basic"],{session:false}),async (req,res)=>{
+    await req.user.regenerateJWTSalts();
+    return res.status(200).send();
+});
 module.exports=router;

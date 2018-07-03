@@ -29,8 +29,8 @@ UserSchema.index({username:1});
 // generate new token's secrets and save them
 UserSchema.methods.regenerateJWTSalts = async function (){
     const salts= await Promise.all([
-        bcrypt.genSalt(config.get("TOKEN_SALT_LENGTH")),
-        bcrypt.genSalt(config.get("TOKEN_SALT_LENGTH"))
+        bcrypt.genSalt(config.get("TOKEN_SECRET_SALT_LENGTH")),
+        bcrypt.genSalt(config.get("TOKEN_SECRET_SALT_LENGTH"))
     ]);
     this.jwtSecrets = {
         access: salts[0],
@@ -69,7 +69,6 @@ UserSchema.methods.generateJWT = function () {
     };
 };
 UserSchema.methods.comparePassword = function (plainPasswordCandidate){
-    console.log(plainPasswordCandidate,this.password)
     return bcrypt.compare(plainPasswordCandidate, this.password);
 };
 UserSchema.pre('save',async function (next) {
