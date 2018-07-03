@@ -1,7 +1,6 @@
 | Master |  Dev    |
 | ------: | ------ |
-| [![Build Status][travis-master]](https://travis-ci.org/ZulusK/chatter) | [![Build Status][travis-dev]]
-(https://travis-ci.org/ZulusK/chatter) |
+| [![Build Status][travis-master]](https://travis-ci.org/ZulusK/chatter) | [![Build Status][travis-dev]](https://travis-ci.org/ZulusK/chatter) |
 
 [DEMO](https://chatter-job-task.herokuapp.com/)
 # Short Description
