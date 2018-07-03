@@ -7,7 +7,7 @@ require("module-alias/register");
 require("@config");
 
 const app = require('../app');
-const log=require("../application").logger(module);
+const log=require("@app").logger(module);
 const http = require('http');
 /**
  * Get port from environment and store in Express.
