@@ -22,5 +22,5 @@ function buildIndexFile(dirname,destModule) {
 buildIndexFile(__dirname,module);
 
 module.exports.forEachInDirDo=forEachInDirDo;
-module.exports.forAllInDirD=buildIndexFile;
+module.exports.buildIndexFile=buildIndexFile;
 
