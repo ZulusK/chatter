@@ -1,6 +1,7 @@
 "use strict";
 const fs = require("fs");
 const _=require("lodash");
+const path=require("path");
 
 function forAllInDirDo (path, callback)  {
     if(!_.isFunction(callback)||!path) return;
@@ -14,11 +15,11 @@ function forAllInDirDo (path, callback)  {
 
 }
 
-function buildIndexFile(path,destModule) {
-    forAllInDirDo(path,file=>destModule.exports[file.substring(0,file.lastIndexOf(".")||file.length)]=require(`./${file}`));
+function buildIndexFile(dirname,destModule) {
+    forAllInDirDo(dirname,file=>destModule.exports[file.substring(0,file.lastIndexOf(".")||file.length)]=require(path.resolve(dirname,file)));
 }
 
 buildIndexFile(__dirname,module);
 
-module.exports={...module.exports,forAllInDirDo,buildIndexFile};
+module.exports={...module.exports,forEachInDirDo: forAllInDirDo,buildIndexFile};
 
