@@ -8,14 +8,6 @@ class MessageDriver extends AbstractDriver {
         super(MessageModel)
     }
 
-    async getByCredentials(email, password) {
-        const user = await this.findOne({email});
-        if (user && await user.comparePassword(password)) {
-            return user;
-        }
-        return null;
-    }
-
     async getByUser(authorId,options) {
         if(options) {
             return this.findPaginated({authorId},options);

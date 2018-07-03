@@ -5,6 +5,7 @@ const UserDriver=require("@db").UserDriver;
 const config=require("@config");
 const rules = config.get("validationRules");
 const log=require("@utils").logger(module);
+const passport=require("passport");
 
 router.post("/signup",[
     body('username')
@@ -35,5 +36,7 @@ router.post("/signup",[
         })
 });
 
-
+router.post("/signin",passport.authenticate(['basic'],{ session: false }),(req,res)=>{
+    return res.json(req.user.generateJWT())
+});
 module.exports=router;

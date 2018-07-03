@@ -1,7 +1,7 @@
-const LocalStrategy=require("passport-local").Strategy;
-const UserDriver=require("@db").UserDriver;
+const BasicStrategy = require("passport-http").BasicStrategy;
+const UserDriver = require("@db").UserDriver;
 
-module.exports= new LocalStrategy(async (req, username, password, done) => {
+module.exports = new BasicStrategy(async (username, password, done) => {
     const user = await UserDriver.getByCredentials(username, password);
     if (user) {
         return done(null, user);

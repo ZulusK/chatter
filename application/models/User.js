@@ -69,10 +69,10 @@ UserSchema.methods.generateJWT = function () {
     };
 };
 UserSchema.methods.comparePassword = function (plainPasswordCandidate){
+    console.log(plainPasswordCandidate,this.password)
     return bcrypt.compare(plainPasswordCandidate, this.password);
 };
 UserSchema.pre('save',async function (next) {
-    const user=this;
     if (!this.isModified("password") && !this.isNew) {
         return next();
     }else {
@@ -80,17 +80,13 @@ UserSchema.pre('save',async function (next) {
             const salts = await Promise.all([
                 bcrypt.genSalt(config.get("TOKEN_SECRET_SALT_LENGTH")), // access secret salt
                 bcrypt.genSalt(config.get("TOKEN_SECRET_SALT_LENGTH")), // refresh secret salt
-                bcrypt.genSalt(config.get("TOKEN_SALT_LENGTH")) // password salt
             ]);
-            user.jwtSecrets = {
+            this.jwtSecrets = {
                 access: salts[0],
                 refresh: salts[1]
             };
-            bcrypt.hash(user.password, salts[2])
-                .then(hash=>{
-                    user.password=hash;
-                    next()
-                });
+            this.password=await bcrypt.hash(this.password, config.get("PASSWORD_SALT_LENGTH"));
+            next();
         } catch (err) {
             log.error(err);
             next(err);

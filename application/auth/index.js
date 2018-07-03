@@ -8,3 +8,6 @@ utils.buildIndexFile(__dirname,module);
 _.forIn(module.exports,(strategy,name)=>{
     passport.use(name,strategy);
 });
+
+
+module.exports=()=>passport.initialize();

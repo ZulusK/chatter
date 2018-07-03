@@ -12,7 +12,7 @@ module.exports = {
     isDev: false,
     LOG_LEVEL: "info",
 
-    TOKEN_SALT_LENGTH: 20,
+    PASSWORD_SALT_LENGTH: 10,
     TOKEN_SECRET_SALT_LENGTH:5,
     TOKEN_SALT_ACCESS: bcrypt.genSaltSync(this.TOKEN_SALT_LENGTH),
     TOKEN_SALT_REFRESH: bcrypt.genSaltSync(this.TOKEN_SALT_LENGTH),
