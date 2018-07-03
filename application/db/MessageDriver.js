@@ -15,13 +15,15 @@ class MessageDriver extends AbstractDriver {
             return this.find({author});
         }
     }
-
     create({text, author}) {
         return super.create({text,author});
     }
     getPublicFields(doc){
         const {text, author,_id:id,createdAt,updatedAt}=doc;
         return {text,author,id,createdAt,updatedAt};
+    }
+    get publicFieldNames(){
+        return ["text,id"];
     }
 }
 

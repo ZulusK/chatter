@@ -12,6 +12,8 @@ module.exports = {
     isDev: false,
     LOG_LEVEL: "info",
 
+    MAX_PAGINATION:100,
+    STANDARD_PAGINATION:10,
     PASSWORD_SALT_LENGTH: 10,
     TOKEN_SECRET_SALT_LENGTH:5,
     TOKEN_SALT_ACCESS: process.env.TOKEN_SALT_ACCESS,

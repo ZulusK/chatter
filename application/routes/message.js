@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const {check, body,validationResult} = require('express-validator/check');
+const {check, body, validationResult} = require('express-validator/check');
 const {matchedData, sanitize} = require('express-validator/filter');
 const MessageDriver = require("@db").MessageDriver;
 const config = require("@config");
 const rules = config.get("validationRules");
 const log = require("@utils").logger(module);
 const passport = require("passport");
-
+const _=require("lodash");
 
 
 router.route("/messages")
@@ -30,13 +30,26 @@ router.route("/messages")
             })
     })
     .get(async (req, res, next) => {
-        MessageDriver.find(req.query)
-            .then(results=>{
-                res.json(results.map(x=>MessageDriver.getPublicFields(x)))
+        const {author,page,limit} = req.query;
+
+        const pagination={
+            page:page||1,
+            limit:Math.min(limit||config.get("STANDARD_PAGINATION"),config.get("MAX_PAGINATION"))
+        };
+
+        const query=_.pick(req.query,MessageDriver.publicFieldNames);
+        MessageDriver.findPaginated(query,pagination)
+            .then(result => {
+                return res.json({
+                    total:result.total,
+                    page:result.page,
+                    docs:result.docs.map(x=>MessageDriver.getPublicFields(x)),
+                    limit:result.limit
+                })
             })
-            .catch(error=>{
+            .catch(error => {
                 next(error)
-        })
+            })
     });
 
 module.exports = router;
