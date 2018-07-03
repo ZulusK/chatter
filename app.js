@@ -7,23 +7,15 @@ const helmet = require("helmet");
 const cors = require("cors");
 const compression = require("compression");
 const config = require("@config");
-const app = express();
-const mongoose=require("mongoose");
-const bluebird=require("bluebird");
+
+
 const busboyBodyParser = require('busboy-body-parser');
 const auth=require("@app/auth");
-// configure and connect to DB
-log.debug(`Try to connect as ${config.get("DB_URL")}`);
-mongoose.Promise = bluebird;
-mongoose.connect(config.get("DB_URL"))
-    .then(() => {
-        log.info("Connected to MongoDB");
-    })
-    .catch((err) => {
-        log.error("MongoDB connection error." + err);
-        throw err;
-    });
+const db=require("@db");
 
+const app = express();
+
+db.connect();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
