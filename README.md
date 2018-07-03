@@ -30,4 +30,4 @@ Posts stored in database, and users can get or create posts by using REST API.
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 [travis-master]: https://travis-ci.org/ZulusK/chatter.svg?branch=master
-[tarvis-dev]:https://travis-ci.org/ZulusK/chatter.svg?branch=dev
+[travis-dev]:https://travis-ci.org/ZulusK/chatter.svg?branch=dev
