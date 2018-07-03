@@ -13,11 +13,10 @@ cache:
   directories:
   - node_modules
 deploy:
-  - provider: script
-#    script: bash scripts/deploy.sh production
-    on:
-      branch: master
-    script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && \
+  provider: script
+  on:
+    branch: master
+  script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && \
             docker build -t registry.heroku.com/chatter/web . && \
             docker push registry.heroku.com/chatter/web
 
