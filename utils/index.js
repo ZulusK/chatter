@@ -3,7 +3,7 @@ const fs = require("fs");
 const _=require("lodash");
 const path=require("path");
 
-function forAllInDirDo (path, callback)  {
+function forEachInDirDo (path, callback)  {
     if(!_.isFunction(callback)||!path) return;
     fs.readdirSync(path)
         .filter(function (file) {
@@ -16,10 +16,11 @@ function forAllInDirDo (path, callback)  {
 }
 
 function buildIndexFile(dirname,destModule) {
-    forAllInDirDo(dirname,file=>destModule.exports[file.substring(0,file.lastIndexOf(".")||file.length)]=require(path.resolve(dirname,file)));
+    forEachInDirDo(dirname,file=>destModule.exports[file.substring(0,file.lastIndexOf(".")||file.length)]=require(path.resolve(dirname,file)));
 }
 
 buildIndexFile(__dirname,module);
 
-module.exports={...module.exports,forEachInDirDo: forAllInDirDo,buildIndexFile};
+module.exports.forEachInDirDo=forEachInDirDo;
+module.exports.forAllInDirD=buildIndexFile;
 

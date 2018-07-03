@@ -1,10 +1,10 @@
 const router=require("express").Router();
 const { body, validationResult } = require('express-validator/check');
-const { matchedData, sanitize } = require('express-validator/filter');
+const { matchedData } = require('express-validator/filter');
 const UserDriver=require("@db").UserDriver;
 const config=require("@config");
 const rules = config.get("validationRules");
-const log=require("@utils").logger(module);
+// const log=require("@utils").logger(module);
 const passport=require("passport");
 
 router.post("/signup",[

@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const {check, body, validationResult} = require('express-validator/check');
-const {matchedData, sanitize} = require('express-validator/filter');
+const {body, validationResult} = require('express-validator/check');
+const {matchedData} = require('express-validator/filter');
 const MessageDriver = require("@db").MessageDriver;
 const config = require("@config");
 const rules = config.get("validationRules");
-const log = require("@utils").logger(module);
+// const log = require("@utils").logger(module);
 const passport = require("passport");
 const _=require("lodash");
 
@@ -30,8 +30,7 @@ router.route("/messages")
             })
     })
     .get(async (req, res, next) => {
-        const {author,page,limit} = req.query;
-
+        const {page,limit} = req.query;
         const pagination={
             page:page||1,
             limit:Math.min(limit||config.get("STANDARD_PAGINATION"),config.get("MAX_PAGINATION"))

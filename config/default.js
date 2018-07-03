@@ -1,4 +1,3 @@
-const bcrypt = require("bcrypt");
 
 function generateURL() {
     const url = process.env.DB_URL || "";

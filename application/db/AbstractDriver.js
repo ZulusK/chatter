@@ -62,7 +62,6 @@ class AbstractDriver {
 
     create(args) {
         const instance = new this._model(args);
-        console.log(instance)
         return instance.save();
     }
 
