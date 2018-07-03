@@ -1,5 +1,5 @@
 
 module.exports={
-    idDev:true
-
+    idDev:true,
+    LOG_LEVEL:"debug"
 };

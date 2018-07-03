@@ -10,7 +10,7 @@ function generateURL() {
 module.exports = {
     DB_URL: generateURL(),
     isDev: false,
-    LOG_LEVEL: "debug",
+    LOG_LEVEL: "info",
 
     TOKEN_SALT_LENGTH: 20,
     TOKEN_SECRET_SALT_LENGTH:5,
@@ -31,7 +31,7 @@ module.exports = {
                 min: 8,
                 max: 16
             },
-            regExp: /^(?=.*\d.*)(?=.*[a-z].*)(?=.*[A-Z].*)(?=.*[!#$%&?]*.*).{8,20}$/
+            regExp: /^(?=.*\d.*)(?=.*[a-z].*)(?=.*[A-Z].*)(?=.*[!#$%&?]*.*).{8,16}$/
         }
     }
 };

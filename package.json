@@ -9,12 +9,14 @@
   "main": "./bin/www",
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon $NODE_DEBUG_OPTION  ./bin/www",
+    "dev": "NODE_ENV=development  nodemon $NODE_DEBUG_OPTION  ./bin/www",
     "lint": "./node_modules/eslint/bin/eslint.js ."
   },
   "dependencies": {
     "bcrypt": "^2.0.1",
     "bluebird": "^3.5.1",
+    "body-parser": "^1.18.3",
+    "busboy-body-parser": "^0.3.2",
     "compression": "^1.7.2",
     "config": "^1.30.0",
     "cors": "^2.8.4",
@@ -30,6 +32,9 @@
     "mongoose": "^5.2.0",
     "mongoose-paginate": "^5.0.3",
     "morgan": "~1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
     "validator": "^10.4.0",
     "winston": "^3.0.0"
   },
@@ -49,10 +54,10 @@
   },
   "_moduleAliases": {
     "@config": "./config",
-    "@app": "./app/",
-    "@routes": "./app/routes",
-    "@models": "./app/models",
+    "@app": "./application/",
+    "@routes": "./application/routes",
+    "@models": "./application/models",
     "@utils": "./utils",
-    "@db": "./app/models"
+    "@db": "./application/db"
   }
 }
