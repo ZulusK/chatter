@@ -1,14 +1,25 @@
 language: node_js
 node_js:
-- "node"
+- node
 sudo: false
 before_script:
-  - mongo mydb_test --eval 'db.createUser({user:"chatter_app",pwd:"chatter",roles:["readWrite"]});'
+- mongo mydb_test --eval 'db.createUser({user:"chatter_app",pwd:"chatter",roles:["readWrite"]});'
 script:
 - npm run lint
 services:
-  - mongodb
-  - docker
+- mongodb
+- docker
 cache:
   directories:
   - node_modules
+
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
+
+env:
+  matrix:
+  - secure: f9p1bZmdunGBMwvgpScwEFhr1qJM29Faw6U7bAeG7zeQN3MWHTEHTNwV5CxyvJtXgFWiP5BaLUqck5O2Kgg9BjdBXddnqqT3bKOXLs5U7/nyt7sxee2oZnDEd3oFhwh2Py7byMYH5l4MhxGhOXsfyatkh81DSOUKWi+NR+B3F3pxKYdNayYYZSCf/OToJuxD/318L/BZMHuMvR/jrDQf3Ti+K93RmczAuVT7E9D5Gkc7kZUHXMqzTofV2cqvMpjkDCgC7aXiV2WHbKOX2U/fyFBUXMRS0wGuOc84yud2F4zQXte/1LHJdfnwUCqiKefKK1YCn8djq3j6pgQwG5al5cTWn6Zb4p6tXvJoOl/8riwXNeIU2uin5xFfUkIzHBobcbi11gRYGJEdUkYL3Yb40aRkGcRhMtOr0I0arOdamDKfULUm1wlulrl29+bGVDyNCrDjXb1lDOIJMZCpOamrc/S93HY4wbfaWuY792WY5F6oxtnlW5tX0mEPgp9M4H/rMRgYm6sU8AFj1Qn/897z3v4sNYb13f+NVYtOAfGJ1fnB50Xst/I3uOXH+0ctSDZwp+ZSDph9pUh/rna9Yj26cVLckNvtjq4awpYj9gbJex38Q74HcjH+l0ihfQFGGj2OSArdyQRpVIUCYd0jfc/6vOezRW1U1PL4pMQ5ZuyVy4Y=
+  - secure: Ar270Flx5qoM0FOf77qzfNr9AaBLUgQS8vfn5glMkjYUiAI11Afqo6H6KU5SXlGlUCIO+mL1lc4fc05xOm6fqQxMQATW2TpddGgqMkXvx80PSNtOQbwwalNuyQ1F18ymuzlhn4AwM+Mw/bqPthYoHKP/0JU6OO+78Hn8Cz5f99K3snWolH6z9Wcez3F5HF+GNokmMxBpiUKQRyaIJoFxGWZmYLqcqXKxklVm46xXrsxhYavwaAd8Fspqq9RGFDEe22V5G8qXZxuQJmToz7aGKuWQ8FoPgnYmnCgHDInet0LqmlKGziOH3iZBRG0ixs4vpyYnt1DchsHrM7AWixbFcd68xXEBPYL2Ho1HcYPPsZ39Gl9Tc0PqhKc+CeiquDCVKFD883Fte0oZFu1QhJIl/RV+VnH17oB8Idc/C/vqHRgGL6E8RG7lcvlfC22XO5nonGEypqcRFgyP1CatWYiA8het8TEAcfD0q++F7IjUpam6pNcXnAINL9cgGs9+OjZ00IOOhspy7Fstl9r8gvRra/TzYyHAD8rbhJ5SKnx4sl5mPs2N9dAf2lZnUoUq3ygoIlQ4FWD6cQY19vq+hhnIDS4EpcWAoh0b8K/G86KjQlVl5uCAKuACIB9HNpzOpScHGJ4hcmSFW0nNhypWfB1//cq7Buzc10oCitJ+0FHT4UE=
