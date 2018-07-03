@@ -21,6 +21,7 @@ mongoose.connect(config.get("DB_URL"))
     })
     .catch((err) => {
         log.error("MongoDB connection error." + err);
+        throw err;
     });
 
 app.use(helmet());
