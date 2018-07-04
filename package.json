@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "NODE_ENV=development  nodemon $NODE_DEBUG_OPTION  ./bin/www",
-    "lint": "eslint .",
+    "lint": "./node_modules/eslint/bin/eslint.js .",
     "test": "npm run lint && NODE_ENV=test mocha"
   },
   "dependencies": {
