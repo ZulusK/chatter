@@ -7,6 +7,9 @@ utils.forEachInDirDo(__dirname, file=>{
     router.use("/"+file.replace(/\.js$/,""),require(`./${file}`))
 });
 
+router.use((req,res)=>{
+    res.sendFile("index.html",{root:config.get("PUBLIC_DIR")})
+});
 // catch 404 and forward to error handler
 router.use((req, res, next) =>{
     next(new createError.NotFound());

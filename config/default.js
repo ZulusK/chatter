@@ -4,6 +4,7 @@
 //     const password = process.env.DB_PASSWORD;
 //     return url.replace("<login>", login).replace("<psw>", password);
 // }
+const path=require("path");
 
 module.exports = {
     DB: {
@@ -16,7 +17,7 @@ module.exports = {
     },
     isDev: false,
     LOG_LEVEL: "info",
-
+    PUBLIC_DIR: path.join(__dirname,"../public"),
     MAX_PAGINATION: 100,
     STANDARD_PAGINATION: 10,
     PASSWORD_SALT_LENGTH: 10,
