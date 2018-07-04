@@ -22,8 +22,8 @@ class MessageDriver extends AbstractDriver {
         const {text, author,_id:id,createdAt,updatedAt}=doc;
         return {text,author,id,createdAt,updatedAt};
     }
-    get publicFieldNames(){
-        return ["text,id"];
+    get queriedFields(){
+        return ["_id","author"];
     }
 }
 

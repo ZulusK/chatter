@@ -29,6 +29,10 @@ class UserDriver extends AbstractDriver {
     create({username, password}) {
         return super.create({username, password});
     }
+    getPublicFields(doc){
+        const {username,_id:id,createdAt,updatedAt}=doc;
+        return {username,id,createdAt,updatedAt};
+    }
 }
 
 module    .exports = new UserDriver();

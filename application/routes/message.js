@@ -10,10 +10,13 @@ const _=require("lodash");
 
 
 router.route("/messages")
-    .post(passport.authenticate(['bearer-access'], {session: false}), [
+    .post(passport.authenticate(['bearer-access','basic'], {session: false}), [
         body('text')
+            .exists()
+            .withMessage('text is required')
             .isLength(rules.message.length)
             .withMessage(`text must be less, that ${rules.message.length} symbols`)
+
     ], (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -32,11 +35,11 @@ router.route("/messages")
     .get(async (req, res, next) => {
         const {page,limit} = req.query;
         const pagination={
-            page:page||1,
-            limit:Math.min(limit||config.get("STANDARD_PAGINATION"),config.get("MAX_PAGINATION"))
+            page:Math.max(page||1,1),
+            limit:Math.max(Math.min(limit||config.get("STANDARD_PAGINATION"),config.get("MAX_PAGINATION")),config.get("STANDARD_PAGINATION"))
         };
 
-        const query=_.pick(req.query,MessageDriver.publicFieldNames);
+        const query=_.pick(req.query,MessageDriver.queriedFields);
         MessageDriver.findPaginated(query,pagination)
             .then(result => {
                 return res.json({
