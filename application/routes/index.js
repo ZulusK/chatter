@@ -3,8 +3,9 @@ const utils=require("@utils");
 const router = express.Router();
 const createError =require('http-errors');
 const config=require("@config");
-utils.forEachInDirDo(__dirname, file=>router.use(require(`./${file}`)));
-
+utils.forEachInDirDo(__dirname, file=>{
+    router.use("/"+file.replace(/\.js$/,""),require(`./${file}`))
+});
 
 // catch 404 and forward to error handler
 router.use((req, res, next) =>{

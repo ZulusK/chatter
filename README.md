@@ -3,6 +3,7 @@
 | [![Build Status][travis-master]](https://travis-ci.org/ZulusK/chatter) | [![Build Status][travis-dev]](https://travis-ci.org/ZulusK/chatter) |
 
 [DEMO](https://chatter-job-task.herokuapp.com/)
+
 [Postman test](https://documenter.getpostman.com/view/3031705/RWM6xsGV)
 # Short Description
 The NodeJS app - a simple public chat. Where unauthenticated users can post text and everyone else can read them.

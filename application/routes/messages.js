@@ -9,7 +9,7 @@ const passport = require("passport");
 const _=require("lodash");
 
 
-router.route("/messages")
+router.route("/")
     .post(passport.authenticate(['bearer-access','basic'], {session: false}), [
         body('text')
             .exists()

@@ -91,11 +91,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/signup",
+							"raw": "{{host}}/user/signup",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"signup"
 							]
 						}
@@ -157,11 +158,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/signup",
+							"raw": "{{host}}/user/signup",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"signup"
 							]
 						}
@@ -223,11 +225,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/signup",
+							"raw": "{{host}}/user/signup",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"signup"
 							]
 						}
@@ -288,11 +291,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/signup",
+							"raw": "{{host}}/user/signup",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"signup"
 							]
 						}
@@ -353,11 +357,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/signup",
+							"raw": "{{host}}/user/signup",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"signup"
 							]
 						}
@@ -429,11 +434,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/signup",
+							"raw": "{{host}}/user/signup",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"signup"
 							]
 						}
@@ -513,11 +519,12 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "{{host}}/signin",
+							"raw": "{{host}}/user/signin",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"signin"
 							]
 						}
@@ -567,11 +574,12 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "{{host}}/signin",
+							"raw": "{{host}}/user/signin",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"signin"
 							]
 						}
@@ -621,11 +629,12 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "{{host}}/signin",
+							"raw": "{{host}}/user/signin",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"signin"
 							]
 						}
@@ -675,11 +684,12 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "{{host}}/signin",
+							"raw": "{{host}}/user/signin",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"signin"
 							]
 						}
@@ -729,11 +739,12 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "{{host}}/signin",
+							"raw": "{{host}}/user/signin",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"signin"
 							]
 						}
@@ -789,11 +800,12 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{host}}/access-token",
+							"raw": "{{host}}/user/access-token",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"access-token"
 							]
 						}
@@ -826,11 +838,12 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{host}}/access-token",
+							"raw": "{{host}}/user/access-token",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"access-token"
 							]
 						}
@@ -870,11 +883,12 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{host}}/access-token",
+							"raw": "{{host}}/user/access-token",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"access-token"
 							]
 						}
@@ -1767,11 +1781,12 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{host}}/logout",
+							"raw": "{{host}}/user/logout",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"logout"
 							]
 						}
@@ -1802,11 +1817,12 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{host}}/logout",
+							"raw": "{{host}}/user/logout",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"logout"
 							]
 						}
@@ -1844,11 +1860,12 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "{{host}}/logout",
+							"raw": "{{host}}/user/logout",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
+								"user",
 								"logout"
 							]
 						}
