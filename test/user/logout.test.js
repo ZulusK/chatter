@@ -52,7 +52,6 @@ describe("/logout", () => {
     });
     describe("valid username and psw", () => {
         it("should return status 200", (done) => {
-            console.log(USER)
             chai.request(server)
                 .post(URL)
                 .auth(USER.username, USER.password)
