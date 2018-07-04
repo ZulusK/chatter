@@ -978,74 +978,58 @@
 					"response": []
 				},
 				{
-					"name": "create valid [basic auth]",
+					"name": "create invalid [no text]",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "e02deaa9-a65e-4ac0-b9db-24aceac6bf72",
+								"id": "af509c1e-f940-48de-82f3-b308ca03e334",
 								"type": "text/javascript",
 								"exec": [
 									"",
 									"const jsonData = pm.response.json();",
 									"",
 									"",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
 									"});",
-									"pm.test(\"There are public fields of message document\",function(){",
-									"     pm.expect(jsonData).to.have.all.keys([\"text\",\"id\",\"author\",\"createdAt\",\"updatedAt\"]);",
-									"})",
 									"",
-									"pm.test(\"Text inside is equal to sended text\",function(){",
-									"     pm.expect(jsonData.text).to.equal(pm.environment.get(\"msg-text\"))",
-									"})",
 									"",
-									"pm.environment.set(\"msg-id\",jsonData.id)",
-									""
+									"pm.test(\"Body contains validation errors\",function(){",
+									"    pm.expect(jsonData.errors).to.have.all.keys(\"text\");",
+									"   ",
+									"})",
+									"pm.test(\"Error msg tells us, we didn't send text\",function(){",
+									"     pm.expect(jsonData.errors.text.msg).to.equal(\"text is required\");",
+									"})"
 								]
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "c15cec92-64d5-40d9-95da-625d8426a0f6",
+								"id": "f84c2bcb-d800-45c1-83e2-4f08eb1ca759",
 								"type": "text/javascript",
 								"exec": [
-									"pm.environment.set(\"msg-text\", `some text of message ${Date.now()}`);"
+									""
 								]
 							}
 						}
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": [
+							"type": "bearer",
+							"bearer": [
 								{
-									"key": "username",
-									"value": "{{current_username}}",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "{{current_password}}",
+									"key": "token",
+									"value": "{{token-access}}",
 									"type": "string"
 								}
 							]
 						},
 						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "text",
-									"value": "{{msg-text}}",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
+						"body": {},
 						"url": {
 							"raw": "{{host}}/messages",
 							"host": [
@@ -1178,58 +1162,74 @@
 					"response": []
 				},
 				{
-					"name": "create invalid [no text]",
+					"name": "create valid [basic auth]",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "af509c1e-f940-48de-82f3-b308ca03e334",
+								"id": "e02deaa9-a65e-4ac0-b9db-24aceac6bf72",
 								"type": "text/javascript",
 								"exec": [
 									"",
 									"const jsonData = pm.response.json();",
 									"",
 									"",
-									"pm.test(\"Status code is 400\", function () {",
-									"    pm.response.to.have.status(400);",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
 									"});",
-									"",
-									"",
-									"pm.test(\"Body contains validation errors\",function(){",
-									"    pm.expect(jsonData.errors).to.have.all.keys(\"text\");",
-									"   ",
+									"pm.test(\"There are public fields of message document\",function(){",
+									"     pm.expect(jsonData).to.have.all.keys([\"text\",\"id\",\"author\",\"createdAt\",\"updatedAt\"]);",
 									"})",
-									"pm.test(\"Error msg tells us, we didn't send text\",function(){",
-									"     pm.expect(jsonData.errors.text.msg).to.equal(\"text is required\");",
-									"})"
+									"",
+									"pm.test(\"Text inside is equal to sended text\",function(){",
+									"     pm.expect(jsonData.text).to.equal(pm.environment.get(\"msg-text\"))",
+									"})",
+									"",
+									"pm.environment.set(\"msg-id\",jsonData.id)",
+									""
 								]
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "f84c2bcb-d800-45c1-83e2-4f08eb1ca759",
+								"id": "c15cec92-64d5-40d9-95da-625d8426a0f6",
 								"type": "text/javascript",
 								"exec": [
-									""
+									"pm.environment.set(\"msg-text\", `some text of message ${Date.now()}`);"
 								]
 							}
 						}
 					],
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
+							"type": "basic",
+							"basic": [
 								{
-									"key": "token",
-									"value": "{{token-access}}",
+									"key": "username",
+									"value": "{{current_username}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{current_password}}",
 									"type": "string"
 								}
 							]
 						},
 						"method": "POST",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "{{msg-text}}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "{{host}}/messages",
 							"host": [
@@ -1248,141 +1248,6 @@
 			"name": "message get",
 			"description": "",
 			"item": [
-				{
-					"name": "valid [with auth]",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3e2aa99d-a5aa-466c-bdf6-317cd7dff3f6",
-								"type": "text/javascript",
-								"exec": [
-									"",
-									"const jsonData = pm.response.json();",
-									"",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Contains paginated data\",function(){",
-									"   pm.expect(jsonData).to.have.all.keys([\"docs\",\"total\",\"limit\",\"page\"]) ",
-									"});",
-									"",
-									"pm.test(\"Docs contains messages\",function(){",
-									"    pm.expect(jsonData.docs).to.not.be.empty;",
-									"})",
-									"",
-									"pm.test(\"Docs contains less that limit and total documents\",function(){",
-									"    pm.expect(jsonData.docs.length).to.at.most(jsonData.total);",
-									"    pm.expect(jsonData.docs.length).to.at.most(jsonData.limit);",
-									"})",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token-access}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "text",
-									"value": "12kdwanlkniawhidwhi",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{host}}/messages",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"messages"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "invalid [unallowed params]",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3e2aa99d-a5aa-466c-bdf6-317cd7dff3f6",
-								"type": "text/javascript",
-								"exec": [
-									"",
-									"const jsonData = pm.response.json();",
-									"",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Contains paginated data\",function(){",
-									"   pm.expect(jsonData).to.have.all.keys([\"docs\",\"total\",\"limit\",\"page\"]) ",
-									"});",
-									"",
-									"pm.test(\"Docs contains messages\",function(){",
-									"    pm.expect(jsonData.docs).to.not.be.empty;",
-									"})",
-									"",
-									"pm.test(\"Docs contains less that limit and total documents\",function(){",
-									"    pm.expect(jsonData.docs.length).to.at.most(jsonData.total);",
-									"    pm.expect(jsonData.docs.length).to.at.most(jsonData.limit);",
-									"})",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "text",
-									"value": "12kdwanlkniawhidwhi",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{host}}/messages?x=12",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"messages"
-							],
-							"query": [
-								{
-									"key": "x",
-									"value": "12"
-								}
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "valid get by author",
 					"event": [
@@ -1460,75 +1325,6 @@
 					"response": []
 				},
 				{
-					"name": "valid get by id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "38ffca5f-f1fc-4e18-a717-c56d3f0749ce",
-								"type": "text/javascript",
-								"exec": [
-									"",
-									"const jsonData = pm.response.json();",
-									"",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Contains paginated data\",function(){",
-									"   pm.expect(jsonData).to.have.all.keys([\"docs\",\"total\",\"limit\",\"page\"]) ",
-									"});",
-									"",
-									"pm.test(\"Docs contains messages\",function(){",
-									"    pm.expect(jsonData.docs).to.not.be.empty;",
-									"})",
-									"",
-									"pm.test(\"Docs contains less that limit and total documents\",function(){",
-									"    pm.expect(jsonData.docs.length).to.equal(1);",
-									"})",
-									"",
-									"pm.test(\"Doc have specified id\",function(){",
-									"        pm.expect(jsonData.docs[0].id).to.equal(pm.environment.get(\"msg-id\"))",
-									"    });"
-								]
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "text",
-									"value": "12kdwanlkniawhidwhi",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{host}}/messages?_id={{msg-id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"messages"
-							],
-							"query": [
-								{
-									"key": "_id",
-									"value": "{{msg-id}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "valid get paginated",
 					"event": [
 						{
@@ -1578,7 +1374,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/messages?page=2&limit=5",
+							"raw": "{{host}}/messages?page=1&limit=11",
 							"host": [
 								"{{host}}"
 							],
@@ -1588,11 +1384,11 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "2"
+									"value": "1"
 								},
 								{
 									"key": "limit",
-									"value": "5"
+									"value": "11"
 								}
 							]
 						}
@@ -1738,6 +1534,210 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "invalid [unallowed params]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e2aa99d-a5aa-466c-bdf6-317cd7dff3f6",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Contains paginated data\",function(){",
+									"   pm.expect(jsonData).to.have.all.keys([\"docs\",\"total\",\"limit\",\"page\"]) ",
+									"});",
+									"",
+									"pm.test(\"Docs contains messages\",function(){",
+									"    pm.expect(jsonData.docs).to.not.be.empty;",
+									"})",
+									"",
+									"pm.test(\"Docs contains less that limit and total documents\",function(){",
+									"    pm.expect(jsonData.docs.length).to.at.most(jsonData.total);",
+									"    pm.expect(jsonData.docs.length).to.at.most(jsonData.limit);",
+									"})",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "12kdwanlkniawhidwhi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/messages?x=12",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"messages"
+							],
+							"query": [
+								{
+									"key": "x",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "valid [with auth]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e2aa99d-a5aa-466c-bdf6-317cd7dff3f6",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Contains paginated data\",function(){",
+									"   pm.expect(jsonData).to.have.all.keys([\"docs\",\"total\",\"limit\",\"page\"]) ",
+									"});",
+									"",
+									"pm.test(\"Docs contains messages\",function(){",
+									"    pm.expect(jsonData.docs).to.not.be.empty;",
+									"})",
+									"",
+									"pm.test(\"Docs contains less that limit and total documents\",function(){",
+									"    pm.expect(jsonData.docs.length).to.at.most(jsonData.total);",
+									"    pm.expect(jsonData.docs.length).to.at.most(jsonData.limit);",
+									"})",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "12kdwanlkniawhidwhi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/messages",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "valid get by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38ffca5f-f1fc-4e18-a717-c56d3f0749ce",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Contains paginated data\",function(){",
+									"   pm.expect(jsonData).to.have.all.keys([\"docs\",\"total\",\"limit\",\"page\"]) ",
+									"});",
+									"",
+									"pm.test(\"Docs contains messages\",function(){",
+									"    pm.expect(jsonData.docs).to.not.be.empty;",
+									"})",
+									"",
+									"pm.test(\"Docs contains less that limit and total documents\",function(){",
+									"    pm.expect(jsonData.docs.length).to.equal(1);",
+									"})",
+									"",
+									"pm.test(\"Doc have specified id\",function(){",
+									"        pm.expect(jsonData.docs[0].id).to.equal(pm.environment.get(\"msg-id\"))",
+									"    });"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "12kdwanlkniawhidwhi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/messages?_id={{msg-id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"messages"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "{{msg-id}}"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1875,17 +1875,18 @@
 			]
 		},
 		{
-			"name": "404 not found",
+			"name": "returns page with api",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "32205750-27be-446d-8826-e2d74797279b",
+						"id": "b7073ed4-72f7-4929-ad0d-5b7799c430de",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});"
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
 						]
 					}
 				}

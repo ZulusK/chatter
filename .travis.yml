@@ -3,7 +3,7 @@ node_js:
 - node
 sudo: required
 before_script:
-- mongo mydb_test --eval 'db.createUser({user:"chatter_app",pwd:"chatter",roles:["readWrite"]});'
+- mongo chatter_app_test --eval 'db.createUser({user:"chatter_app_test",pwd:"test_psw",roles:["readWrite"]});'
 script:
 - npm run lint
 services:

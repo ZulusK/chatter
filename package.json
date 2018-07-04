@@ -10,13 +10,15 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "NODE_ENV=development  nodemon $NODE_DEBUG_OPTION  ./bin/www",
-    "lint": "./node_modules/eslint/bin/eslint.js ."
+    "lint": "./node_modules/eslint/bin/eslint.js .",
+    "test": "npm run lint && NODE_ENV=test mocha"
   },
   "dependencies": {
     "bcrypt": "^2.0.1",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
     "busboy-body-parser": "^0.3.2",
+    "chai-as-promised": "^7.1.1",
     "compression": "^1.7.2",
     "config": "^1.30.0",
     "cors": "^2.8.4",
@@ -40,9 +42,14 @@
     "winston": "^3.0.0"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "eslint": "^4.19.1",
+    "eslint-plugin-jasmine": "^2.10.1",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-standard": "^3.1.0",
+    "faker": "^4.1.0",
+    "mocha": "^5.2.0",
     "nodemon": "^1.17.5"
   },
   "nodemonConfig": {
@@ -59,6 +66,7 @@
     "@routes": "./application/routes",
     "@models": "./application/models",
     "@utils": "./utils",
-    "@db": "./application/db"
+    "@db": "./application/db",
+    "@server": "./bin/www"
   }
 }
