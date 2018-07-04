@@ -3,7 +3,7 @@ node_js:
 - node
 sudo: false
 install:
-- npm i -g mocha eslint
+- npm i -g mocha eslint eslint-plugin-node eslint-plugin-jasmine eslint-plugin-standard
 before_script:
 - mongo chatter_app_test --eval 'db.createUser({user:"chatter_app_test",pwd:"test_psw",roles:["readWrite"]});'
 script:
