@@ -13,10 +13,6 @@ cache:
   directories:
   - node_modules
 after_success:
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker build -t registry.heroku.com/chatter/web .
-- docker push registry.heroku.com/chatter/web
-env:
-  global:
-  - secure: CRWk+M7Yq6tGhker9kEbrM4uWcibPvidPNIah4db9kflELfz2qhgZsPHQZDD8zKtMrnNZPDyX/a9mwUXrIE7ZlFGaSrkAq0rz1EVNCBHOAtjA1KpjACEGjG27i/5gfaddaS8oHl2jeOVZExlr7au4IGlZqddq8lYNjnSkaBwwyoXSK9nz5RGVEiKUC8Ogglkbcau7a7v7JtvZgK6r9i+L0kyW9Ff9K9j/TtpJs+G5Gi5G2VVpatJYM5NysgTpIct3+hi1nK4PQZ2uUhs/w6YtZ+63gj0vpdIYwvstTNvfJ0nfH/okJRAHdEcs04xwIDA+NF9YUJJCMgUlvos3MfJcPvMzPHRz8ZVGJB6c2EWlJiiZ+l0N92GywuOwCX7D7VYmO3voI3ktIFCj5NMvI7zcHObq9C4h9WOVpTuVH0nopEelkQ2uPVMexmnQ/PF5cwhAlHnYUWAeItE0PZUBb63DnMHHHcoy0YD69CbdTQkrUOLiR5bggbnHRVQHoxJqZSUjA7CY1zjGz5Wy05VZlL9HvOjFX6LdHBJh5u6RLTEl+U4sO+wwv1RTQXJNTIHmp6/+YwrwHiiaf8MfwBjxuem1QGGRI/FYor2C8K3L7wHNgM/62MjHQE5eOnArYFHomx8/0G1Tx/n+6kv6GlL/DHpKF/0+CryGSHZg1ijBRjFChs=
-  - secure: NBzq4Uj4UQgiCLuh0TjSsvJXrZRYL6ULygeWjKJ1sqIFEHp7FGvqYDtjvHT5di/Cq2D9kRhPlhEyOTBiLV7TZ4Du6x5jCMChSn08fBmo8nuNy5w7pY9pAj+r+whwVPWZa1hxISnsayighQdEXK/ILsulo6GIEOlaaTb1y80N8QiQv4E34JE1+oDWA5QEdr0ZVld7n8KU89c9orsSyTGVsqoPP3YnC77QN1ixMFSxtISNl/o28mUO6F/OHT3r3zIml6Lyavcrv28lg68ELhFdUVO5cWtgSYPtk78Vbha42cCddMsWtaOlE0bOkgC6rlnjuIJOExy0D6wijgex9F7ARkPLn1+VHJS2CD7mXq7fTVG3SBBs/B5F6EXbg1ya4eTHQIHn1KrqSz6B5a4Q4akvSX0BglxOIZkuHwYet19bkE+vtS0Xgfs83mmDGuEZQCFZoktWgUBefY9UnhJ5uROXejviASv/ARsUTRDpqwkzrnjRUp98ZmDxRM0GezUroweA6EMY9LdRT97eEMxIEMMrJep5MV1D4BzPN1q5dveeF6rxvGf9ioczGuzwj1HXCgaPEXTAGejw4vCZfmk97/CM/tC+8a6xHVRPEhZ/Gm/VWhg5JXvQvN6TBfrpGqdinaLSbzQjTFLrvTQp28bktsn6wh2Zh+i6CIBb7Gve2EUehkk=
+- test $TRAVIS_BRANCH = "master" && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- test $TRAVIS_BRANCH = "master" && docker build -t registry.heroku.com/chatter/web .
+- test $TRAVIS_BRANCH = "master" && docker push registry.heroku.com/chatter/web
