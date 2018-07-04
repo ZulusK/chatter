@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="main.css">
+    <meta charset="UTF-8">
+    <title>Chatter API</title>
+                                                         </head>
+<body>
+<div class="container">
+    <h1>Chatter API</h1>
+    <p class="sw-info">
+        Base URL: <span class="sw-info-basePath">/</span>,
+        Version: <span class="sw-info-version">1.0.0</span>
+    </p>
+    <p><p>Chatter - a simple public chat.</p>
+    </p>
+    
+    
+    <div id="sw-schemes" class="sw-default-value">
+        <span class="sw-default-value-header">Schemes:</span>
+        https
+    </div>
+    
+        
+        <h2 id="swagger--summary-tags">Summary</h2>
+            <h3 id="tag-Message" class="swagger-summary-tag">Tag: Message</h3>
+            <p>Operation with messages</p>
+        
+            <p class="sw-tag-external-doc">
+            </p>
+            <table class="table table-bordered table-condensed swagger--summary">
+                <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#operation--messages-get">GET /messages</a></td>
+                        <td><p>Gets some messages</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--messages-post">POST /messages</a></td>
+                        <td><p>Creates a message</p>
+        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 id="tag-User" class="swagger-summary-tag">Tag: User</h3>
+            <p>Operations with users</p>
+        
+            <p class="sw-tag-external-doc">
+            </p>
+            <table class="table table-bordered table-condensed swagger--summary">
+                <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#operation--user-signup-post">POST /user/signup</a></td>
+                        <td><p>Register new user</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--user-signin-post">POST /user/signin</a></td>
+                        <td><p>Login into account</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--user-logout-post">POST /user/logout</a></td>
+                        <td><p>Logout from all devices</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--user-access-token-get">GET /user/access-token</a></td>
+                        <td><p>Get new access token</p>
+        </td>
+                    </tr>
+                </tbody>
+            </table>
+        
+    
+    
+        <h2>Security</h2>
+    
+            <div id="security-definition-Basic" class="panel panel-security-definition panel-security-definition-basic">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="security-name">Basic</span></h3>
+                    Type: basic
+                </div>
+                <div class="panel-body">                
+                    <section class="sw-security-properties">
+                        <dl>                
+                        </dl>
+                    </section>                
+                </div>
+            </div>        
+            <div id="security-definition-JWT" class="panel panel-security-definition panel-security-definition-apiKey">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="security-name">JWT</span></h3>
+                    Type: apiKey
+                </div>
+                <div class="panel-body">                
+                    <section class="sw-security-properties">
+                        <dl>                
+                                <dt class="security-property-name">Name:</dt>
+                                <dd class="security-property-type">
+                                    <div class="row">
+                                        <div class="col-md-12"><p>Authorization</p></div>
+                                    </div>
+                                </dd>
+                                <dt class="security-property-name">In:</dt>
+                                <dd class="security-property-type">
+                                    <div class="row">
+                                        <div class="col-md-12"><p>header</p></div>
+                                    </div>
+                                </dd>
+                        </dl>
+                    </section>                
+                </div>
+            </div>        
+    
+    <h2>Paths</h2>
+    
+        
+        <span id="path--messages"></span>
+            <div id="operation--messages-get" class="swagger--panel-operation-get panel">
+                <div class="panel-heading">
+                    <div class="operation-summary">Gets some messages</div>
+                    <h3 class="panel-title"><span class="operation-name">GET</span> <strong>/messages</strong></h3>
+                        Tags:
+                            <a href="#tag-Message">Message</a>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>Returns a list containing messages.</p>
+            
+                    </section>
+            
+                    
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                page
+                                            </td>
+                                            <td><p>Page number</p>
+                                        </td>
+                                            <td>query</td>
+                                            <td>
+                                        <span class="json-property-type">integer</span>
+                                        <span class="json-property-range" title="Value limits">, { x ∈ ℤ | x ≥ 10 }</span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                limit
+                                            </td>
+                                            <td><p>Number of messages returned</p>
+                                        </td>
+                                            <td>query</td>
+                                            <td>
+                                        <span class="json-property-type">integer</span>
+                                        <span class="json-property-range" title="Value limits">, { x ∈ ℤ | x ≥ 0 }</span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                _id
+                                            </td>
+                                            <td><p>Id of message</p>
+                                        </td>
+                                            <td>query</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                author
+                                            </td>
+                                            <td><p>Author&#39;s username</p>
+                                        </td>
+                                            <td>query</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Paginated list of messages</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                                <a class="json-schema-ref" href="#/definitions/inline_response_200">inline_response_200</a>
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>
+            <div id="operation--messages-post" class="swagger--panel-operation-post panel">
+                <div class="panel-heading">
+                    <div class="operation-summary">Creates a message</div>
+                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/messages</strong></h3>
+                        Tags:
+                            <a href="#tag-Message">Message</a>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>Adds a new message to the messages list.</p>
+            
+                    </section>
+            
+                        
+                            <section class="sw-request-body">
+                                
+                                    <p><span class="label label-default">multipart/form-data</span> 
+                        </p>
+                            </section>        
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                text
+                                            </td>
+                                            <td><p>Text of message</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                                <span class="json-property-range" title="String length limits">
+                                                    (up to 200 chars)
+                                                </span>
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Created message</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                                <a class="json-schema-ref" href="#/definitions/Message">Message</a>
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-400">
+                                        400 Bad Request
+                                    
+                                    </dt>
+                                    <dd class="sw-response-400">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Bad request</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-401">
+                                        401 Unauthorized
+                                    
+                                    </dt>
+                                    <dd class="sw-response-401">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Unauthorized</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                        <section class="sw-request-security">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-request-security-schema"></th>
+                                    <th class="sw-request-security-scopes"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td><a href="#security-definition-JWT">JWT</a></td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#security-definition-Basic">Basic</a></td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                </div>
+            </div>
+        
+        <span id="path--user-access-token"></span>
+            <div id="operation--user-access-token-get" class="swagger--panel-operation-get panel">
+                <div class="panel-heading">
+                    <div class="operation-summary">Get new access token</div>
+                    <h3 class="panel-title"><span class="operation-name">GET</span> <strong>/user/access-token</strong></h3>
+                        Tags:
+                            <a href="#tag-User">User</a>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>Returns new generated token</p>
+            
+                    </section>
+            
+                    
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Returns new generated token</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                                <a class="json-schema-ref" href="#/definitions/inline_response_200_2">inline_response_200_2</a>
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-401">
+                                        401 Unauthorized
+                                    
+                                    </dt>
+                                    <dd class="sw-response-401">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Unauthorized</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                        <section class="sw-request-security">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-request-security-schema"></th>
+                                    <th class="sw-request-security-scopes"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td><a href="#security-definition-JWT">JWT</a></td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                </div>
+            </div>
+        
+        <span id="path--user-logout"></span>
+            <div id="operation--user-logout-post" class="swagger--panel-operation-post panel">
+                <div class="panel-heading">
+                    <div class="operation-summary">Logout from all devices</div>
+                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/user/logout</strong></h3>
+                        Tags:
+                            <a href="#tag-User">User</a>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>After that all JWT tokens will outdated</p>
+            
+                    </section>
+            
+                        
+                            <section class="sw-request-body">
+                                
+                                    <p><span class="label label-default">multipart/form-data</span> 
+                        </p>
+                            </section>        
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>You have logout from all devices</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-401">
+                                        401 Unauthorized
+                                    
+                                    </dt>
+                                    <dd class="sw-response-401">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Unauthorized</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                        <section class="sw-request-security">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-request-security-schema"></th>
+                                    <th class="sw-request-security-scopes"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td><a href="#security-definition-JWT">JWT</a></td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#security-definition-Basic">Basic</a></td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                </div>
+            </div>
+        
+        <span id="path--user-signin"></span>
+            <div id="operation--user-signin-post" class="swagger--panel-operation-post panel">
+                <div class="panel-heading">
+                    <div class="operation-summary">Login into account</div>
+                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/user/signin</strong></h3>
+                        Tags:
+                            <a href="#tag-User">User</a>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>By passing password and username you can get new JWT-tokens</p>
+            
+                    </section>
+            
+                        
+                            <section class="sw-request-body">
+                                
+                                    <p><span class="label label-default">multipart/form-data</span> 
+                        </p>
+                            </section>        
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                username
+                                            </td>
+                                            <td></td>
+                                            <td>header</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            <span class="json-property-pattern" title="String pattern">, must match <span class="json-schema--regex">^[A-Za-z0-9]{3,20}$</span>
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                password
+                                            </td>
+                                            <td></td>
+                                            <td>header</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            <span class="json-property-range" title="String length limits">
+                                                    (8 to 16 chars)
+                                            </span>
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>You have entered into your account</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                                <a class="json-schema-ref" href="#/definitions/inline_response_200_1">inline_response_200_1</a>
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-401">
+                                        401 Unauthorized
+                                    
+                                    </dt>
+                                    <dd class="sw-response-401">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Unauthorized</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>
+        
+        <span id="path--user-signup"></span>
+            <div id="operation--user-signup-post" class="swagger--panel-operation-post panel">
+                <div class="panel-heading">
+                    <div class="operation-summary">Register new user</div>
+                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/user/signup</strong></h3>
+                        Tags:
+                            <a href="#tag-User">User</a>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>By passing password and username you can create a new account</p>
+            
+                    </section>
+            
+                        
+                            <section class="sw-request-body">
+                                
+                                    <p><span class="label label-default">multipart/form-data</span> 
+                        </p>
+                            </section>        
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                username
+                                            </td>
+                                            <td></td>
+                                            <td>formData</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            <span class="json-property-pattern" title="String pattern">, must match <span class="json-schema--regex">^[A-Za-z0-9]{3,20}$</span>
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                password
+                                            </td>
+                                            <td></td>
+                                            <td>formData</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            <span class="json-property-range" title="String length limits">
+                                                    (8 to 16 chars)
+                                            </span>
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Account created</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                                <a class="json-schema-ref" href="#/definitions/inline_response_200_1">inline_response_200_1</a>
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-400">
+                                        400 Bad Request
+                                    
+                                    </dt>
+                                    <dd class="sw-response-400">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Bad request</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>
+    
+        <h2>Parameter definitions</h2>
+        <table id="table-parameter-definitions" class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-key"></th>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+                <th class="sw-param-annotation"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                        <td><a name="/parameters/page"></a>page</td>
+                    <td>
+                        page
+                    </td>
+                    <td><p>Page number</p>
+                </td>
+                    <td>query</td>
+                    <td>
+                <span class="json-property-type">integer</span>
+                <span class="json-property-range" title="Value limits">, { x ∈ ℤ | x ≥ 10 }</span>
+                
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                        <td><a name="/parameters/limit"></a>limit</td>
+                    <td>
+                        limit
+                    </td>
+                    <td><p>Number of messages returned</p>
+                </td>
+                    <td>query</td>
+                    <td>
+                <span class="json-property-type">integer</span>
+                <span class="json-property-range" title="Value limits">, { x ∈ ℤ | x ≥ 0 }</span>
+                
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+     
+    <h2>Response definitions</h2>
+    
+    <dl id="sw-response-definitions">
+            <dt><a name="/responses/Standard400ErrorResponse"></a>Standard400ErrorResponse</dt>
+            <dd>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Bad request</p>
+                
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-6 sw-response-model">
+                </div>
+                
+                </div>        </dd>
+            <dt><a name="/responses/Standard401ErrorResponse"></a>Standard401ErrorResponse</dt>
+            <dd>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Unauthorized</p>
+                
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-6 sw-response-model">
+                </div>
+                
+                </div>        </dd>
+    </dl>
+    
+                       
+        <h2>Schema definitions</h2>
+    
+            
+                <div id="definition-inline_response_200" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/inline_response_200"></a>inline_response_200:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-example">
+                                    <pre><code class="lang-json">{<br>    &quot;<span class="hljs-attribute">docs</span>&quot;: <span class="hljs-value">[<br>        {<br>            &quot;<span class="hljs-attribute">author</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;Zulus99&quot;</span></span>,<br>            &quot;<span class="hljs-attribute">createdAt</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;1530700954172&quot;</span></span>,<br>            &quot;<span class="hljs-attribute">id</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;507f1f77bcf86cd799439011&quot;</span></span>,<br>            &quot;<span class="hljs-attribute">text</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;This is Sparta&quot;</span></span>,<br>            &quot;<span class="hljs-attribute">updatedAt</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;1530700954172&quot;</span><br>        </span>},<br>        {<br>            &quot;<span class="hljs-attribute">author</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;Zulus99&quot;</span></span>,<br>            &quot;<span class="hljs-attribute">createdAt</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;1530700954172&quot;</span></span>,<br>            &quot;<span class="hljs-attribute">id</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;507f1f77bcf86cd799439011&quot;</span></span>,<br>            &quot;<span class="hljs-attribute">text</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;This is Sparta&quot;</span></span>,<br>            &quot;<span class="hljs-attribute">updatedAt</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;1530700954172&quot;</span><br>        </span>}<br>    ]</span>,<br>    &quot;<span class="hljs-attribute">limit</span>&quot;: <span class="hljs-value"><span class="hljs-number">64</span></span>,<br>    &quot;<span class="hljs-attribute">page</span>&quot;: <span class="hljs-value"><span class="hljs-number">1</span></span>,<br>    &quot;<span class="hljs-attribute">total</span>&quot;: <span class="hljs-value"><span class="hljs-number">0</span><br></span>}
+                            </code></pre>
+                            
+                                </section>
+                            
+                                <section class="json-schema-properties">
+                                    <dl>
+                                            <dt data-property-name="page">
+                                                <span class="json-property-name">page:</span>
+                                                
+                                                <span class="json-property-type">integer</span>
+                                                <span class="json-property-range" title="Value limits">, { x ∈ ℤ | x ≥ 1 }</span>
+                                                
+                                                    <span class="json-property-required"></span>
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                    
+                                                </div>
+                                            </dd>
+                                            <dt data-property-name="limit">
+                                                <span class="json-property-name">limit:</span>
+                                                
+                                                <span class="json-property-type">integer</span>
+                                                <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 10 ≤ x ≤ 100 }</span>
+                                                
+                                                    <span class="json-property-required"></span>
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                    
+                                                </div>
+                                            </dd>
+                                            <dt data-property-name="total">
+                                                <span class="json-property-name">total:</span>
+                                                
+                                                <span class="json-property-type">integer</span>
+                                                <span class="json-property-range" title="Value limits">, { x ∈ ℤ | x ≥ 0 }</span>
+                                                
+                                                    <span class="json-property-required"></span>
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                    
+                                                </div>
+                                            </dd>
+                                            <dt data-property-name="docs">
+                                                <span class="json-property-name">docs:</span>
+                                                
+                                                <span class="json-property-type">object[]</span>
+                                                <span class="json-property-range" title="Value limits"></span>
+                                                
+                                                    <span class="json-property-required"></span>
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                    
+                                                                    <section class="json-schema-array-items">
+                                                                        
+                                                                        <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Message">Message</a>
+                                                                        </span>
+                                                                        <span class="json-property-range" title="Value limits"></span>
+                                                                        
+                                                                        <div class="json-inner-schema">
+                                                                            
+                                                                        </div>
+                                                                    </section>                </div>
+                                            </dd>
+                                    </dl>
+                                </section>
+                    </div>
+                </div>        
+                <div id="definition-inline_response_200_1" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/inline_response_200_1"></a>inline_response_200_1:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-example">
+                                    <pre><code class="lang-json">{<br>    &quot;<span class="hljs-attribute">token</span>&quot;: <span class="hljs-value">{<br>        &quot;<span class="hljs-attribute">accessToken</span>&quot;: <span class="hljs-value">{<br>            &quot;<span class="hljs-attribute">expiredIn</span>&quot;: <span class="hljs-value"><span class="hljs-number">0</span></span>,<br>            &quot;<span class="hljs-attribute">token</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;xxxxx.yyyyy.zzzzz&quot;</span><br>        </span>}</span>,<br>        &quot;<span class="hljs-attribute">refreshToken</span>&quot;: <span class="hljs-value">{<br>            &quot;<span class="hljs-attribute">expiredIn</span>&quot;: <span class="hljs-value"><span class="hljs-number">0</span></span>,<br>            &quot;<span class="hljs-attribute">token</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;xxxxx.yyyyy.zzzzz&quot;</span><br>        </span>}<br>    </span>}</span>,<br>    &quot;<span class="hljs-attribute">user</span>&quot;: <span class="hljs-value">{<br>        &quot;<span class="hljs-attribute">createdAt</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;1530700954172&quot;</span></span>,<br>        &quot;<span class="hljs-attribute">id</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;507f1f77bcf86cd799439011&quot;</span></span>,<br>        &quot;<span class="hljs-attribute">updatedAt</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;1530700954172&quot;</span></span>,<br>        &quot;<span class="hljs-attribute">username</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;Zulus66&quot;</span><br>    </span>}<br></span>}
+                            </code></pre>
+                            
+                                </section>
+                            
+                                <section class="json-schema-properties">
+                                    <dl>
+                                            <dt data-property-name="user">
+                                                <span class="json-property-name">user:</span>
+                                                
+                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/User">User</a>
+                                                </span>
+                                                <span class="json-property-range" title="Value limits"></span>
+                                                
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                    
+                                                </div>
+                                            </dd>
+                                            <dt data-property-name="token">
+                                                <span class="json-property-name">token:</span>
+                                                
+                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/inline_response_200_1_token">inline_response_200_1_token</a>
+                                                </span>
+                                                <span class="json-property-range" title="Value limits"></span>
+                                                
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                    
+                                                </div>
+                                            </dd>
+                                    </dl>
+                                </section>
+                    </div>
+                </div>        
+                <div id="definition-inline_response_200_1_token" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/inline_response_200_1_token"></a>inline_response_200_1_token:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-example">
+                                    <pre><code class="lang-json">{<br>    &quot;<span class="hljs-attribute">accessToken</span>&quot;: <span class="hljs-value">{<br>        &quot;<span class="hljs-attribute">expiredIn</span>&quot;: <span class="hljs-value"><span class="hljs-number">0</span></span>,<br>        &quot;<span class="hljs-attribute">token</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;xxxxx.yyyyy.zzzzz&quot;</span><br>    </span>}</span>,<br>    &quot;<span class="hljs-attribute">refreshToken</span>&quot;: <span class="hljs-value">{<br>        &quot;<span class="hljs-attribute">expiredIn</span>&quot;: <span class="hljs-value"><span class="hljs-number">0</span></span>,<br>        &quot;<span class="hljs-attribute">token</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;xxxxx.yyyyy.zzzzz&quot;</span><br>    </span>}<br></span>}
+                            </code></pre>
+                            
+                                </section>
+                            
+                                <section class="json-schema-properties">
+                                    <dl>
+                                            <dt data-property-name="accessToken">
+                                                <span class="json-property-name">accessToken:</span>
+                                                
+                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Token">Token</a>
+                                                </span>
+                                                <span class="json-property-range" title="Value limits"></span>
+                                                
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                    
+                                                </div>
+                                            </dd>
+                                            <dt data-property-name="refreshToken">
+                                                <span class="json-property-name">refreshToken:</span>
+                                                
+                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Token">Token</a>
+                                                </span>
+                                                <span class="json-property-range" title="Value limits"></span>
+                                                
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                    
+                                                </div>
+                                            </dd>
+                                    </dl>
+                                </section>
+                    </div>
+                </div>        
+                <div id="definition-inline_response_200_2" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/inline_response_200_2"></a>inline_response_200_2:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-example">
+                                    <pre><code class="lang-json">{<br>    &quot;<span class="hljs-attribute">accessToken</span>&quot;: <span class="hljs-value">{<br>        &quot;<span class="hljs-attribute">expiredIn</span>&quot;: <span class="hljs-value"><span class="hljs-number">0</span></span>,<br>        &quot;<span class="hljs-attribute">token</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;xxxxx.yyyyy.zzzzz&quot;</span><br>    </span>}<br></span>}
+                            </code></pre>
+                            
+                                </section>
+                            
+                                <section class="json-schema-properties">
+                                    <dl>
+                                            <dt data-property-name="accessToken">
+                                                <span class="json-property-name">accessToken:</span>
+                                                
+                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Token">Token</a>
+                                                </span>
+                                                <span class="json-property-range" title="Value limits"></span>
+                                                
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                    
+                                                </div>
+                                            </dd>
+                                    </dl>
+                                </section>
+                    </div>
+                </div>        
+                <div id="definition-Message" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/Message"></a>Message:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-example">
+                                    <pre><code class="lang-json">{<br>    &quot;<span class="hljs-attribute">author</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;Zulus99&quot;</span></span>,<br>    &quot;<span class="hljs-attribute">createdAt</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;1530700954172&quot;</span></span>,<br>    &quot;<span class="hljs-attribute">id</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;507f1f77bcf86cd799439011&quot;</span></span>,<br>    &quot;<span class="hljs-attribute">text</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;This is Sparta&quot;</span></span>,<br>    &quot;<span class="hljs-attribute">updatedAt</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;1530700954172&quot;</span><br></span>}
+                            </code></pre>
+                            
+                                </section>
+                            
+                                <section class="json-schema-properties">
+                                    <dl>
+                                            <dt data-property-name="id">
+                                                <span class="json-property-name">id:</span>
+                                                
+                                                <span class="json-property-type">string</span>
+                                                <span class="json-property-range" title="Value limits"></span>
+                                                
+                                                    <span class="json-property-required"></span>
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                        <section class="json-schema-example">
+                                                            <pre><code class="lang-json"><span class="hljs-string">&quot;507f1f77bcf86cd799439011&quot;</span>
+                                                    </code></pre>
+                                                    
+                                                        </section>
+                                                    
+                                                </div>
+                                            </dd>
+                                            <dt data-property-name="text">
+                                                <span class="json-property-name">text:</span>
+                                                
+                                                <span class="json-property-type">string</span>
+                                                <span class="json-property-range" title="Value limits"></span>
+                                                
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                        <section class="json-schema-example">
+                                                            <pre><code class="lang-json"><span class="hljs-string">&quot;This is Sparta&quot;</span>
+                                                    </code></pre>
+                                                    
+                                                        </section>
+                                                    
+                                                </div>
+                                            </dd>
+                                            <dt data-property-name="createdAt">
+                                                <span class="json-property-name">createdAt:</span>
+                                                
+                                                <span class="json-property-type">string</span>    <span class="json-property-format">(int32)</span>
+                                                <span class="json-property-range" title="Value limits"></span>
+                                                
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                        <section class="json-schema-example">
+                                                            <pre><code class="lang-json"><span class="hljs-string">&quot;1530700954172&quot;</span>
+                                                    </code></pre>
+                                                    
+                                                        </section>
+                                                    
+                                                </div>
+                                            </dd>
+                                            <dt data-property-name="updatedAt">
+                                                <span class="json-property-name">updatedAt:</span>
+                                                
+                                                <span class="json-property-type">string</span>    <span class="json-property-format">(int32)</span>
+                                                <span class="json-property-range" title="Value limits"></span>
+                                                
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                        <section class="json-schema-example">
+                                                            <pre><code class="lang-json"><span class="hljs-string">&quot;1530700954172&quot;</span>
+                                                    </code></pre>
+                                                    
+                                                        </section>
+                                                    
+                                                </div>
+                                            </dd>
+                                            <dt data-property-name="author">
+                                                <span class="json-property-name">author:</span>
+                                                
+                                                <span class="json-property-type">string</span>
+                                                <span class="json-property-range" title="Value limits"></span>
+                                                
+                                                    <span class="json-property-required"></span>
+                                            </dt>
+                                            <dd>
+                                                
+                                                <div class="json-inner-schema">
+                                                        <section class="json-schema-example">
+                                                            <pre><code class="lang-json"><span class="hljs-string">&quot;Zulus99&quot;</span>
+                                                    </code></pre>
+                                                    
+                                                        </section>
+                                                    
+                                                </div>
+                                            </dd>
+                                    </dl>
+                                </section>
+                    </div>
+                </div>        
+                <div id="definition-Token" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/Token"></a>Token:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-example">
+                                    <pre><code class="lang-json">{<br>    &quot;<span class="hljs-attribute">expiredIn</span>&quot;: <span class="hljs-value"><span class="hljs-number">0</span></span>,<br>    &quot;<span class="hljs-attribute">token</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;xxxxx.yyyyy.zzzzz&quot;</span><br></span>}
+                            </code></pre>
+                            
+                                </section>
+                            
+                                    <section class="json-schema-properties">
+                                        <dl>
+                                                <dt data-property-name="token">
+                                                    <span class="json-property-name">token:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>    <span class="json-property-format">(jwt token)</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    
+                                                    <div class="json-inner-schema">
+                                                            <section class="json-schema-example">
+                                                                <pre><code class="lang-json"><span class="hljs-string">&quot;xxxxx.yyyyy.zzzzz&quot;</span>
+                                                        </code></pre>
+                                                        
+                                                            </section>
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="expiredIn">
+                                                    <span class="json-property-name">expiredIn:</span>
+                                                    
+                                                    <span class="json-property-type">integer</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                        </dl>
+                                    </section>
+                    </div>
+                </div>        
+                <div id="definition-User" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/User"></a>User:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-example">
+                                    <pre><code class="lang-json">{<br>    &quot;<span class="hljs-attribute">createdAt</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;1530700954172&quot;</span></span>,<br>    &quot;<span class="hljs-attribute">id</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;507f1f77bcf86cd799439011&quot;</span></span>,<br>    &quot;<span class="hljs-attribute">updatedAt</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;1530700954172&quot;</span></span>,<br>    &quot;<span class="hljs-attribute">username</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;Zulus66&quot;</span><br></span>}
+                            </code></pre>
+                            
+                                </section>
+                            
+                                    <section class="json-schema-properties">
+                                        <dl>
+                                                <dt data-property-name="id">
+                                                    <span class="json-property-name">id:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>    <span class="json-property-format">(hexdecimal string)</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    
+                                                    <div class="json-inner-schema">
+                                                            <section class="json-schema-example">
+                                                                <pre><code class="lang-json"><span class="hljs-string">&quot;507f1f77bcf86cd799439011&quot;</span>
+                                                        </code></pre>
+                                                        
+                                                            </section>
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="username">
+                                                    <span class="json-property-name">username:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-pattern" title="String pattern">, must match <span class="json-schema--regex">^[A-Za-z0-9]{3,20}$</span>
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    
+                                                    <div class="json-inner-schema">
+                                                            <section class="json-schema-example">
+                                                                <pre><code class="lang-json"><span class="hljs-string">&quot;Zulus66&quot;</span>
+                                                        </code></pre>
+                                                        
+                                                            </section>
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="createdAt">
+                                                    <span class="json-property-name">createdAt:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>    <span class="json-property-format">(int32)</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    
+                                                    <div class="json-inner-schema">
+                                                            <section class="json-schema-example">
+                                                                <pre><code class="lang-json"><span class="hljs-string">&quot;1530700954172&quot;</span>
+                                                        </code></pre>
+                                                        
+                                                            </section>
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="updatedAt">
+                                                    <span class="json-property-name">updatedAt:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>    <span class="json-property-format">(int32)</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    
+                                                    <div class="json-inner-schema">
+                                                            <section class="json-schema-example">
+                                                                <pre><code class="lang-json"><span class="hljs-string">&quot;1530700954172&quot;</span>
+                                                        </code></pre>
+                                                        
+                                                            </section>
+                                                        
+                                                    </div>
+                                                </dd>
+                                        </dl>
+                                    </section>
+                    </div>
+                </div>
+</div>
+<script src="bundle.js" type="application/javascript"></script>
+</body>
+</html>
