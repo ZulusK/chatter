@@ -4,7 +4,6 @@ const {matchedData} = require('express-validator/filter');
 const MessageDriver = require("@db").MessageDriver;
 const config = require("@config");
 const rules = config.get("validationRules");
-// const log = require("@utils").logger(module);
 const passport = require("passport");
 const ObjectId = require("mongoose").Types.ObjectId;
 
@@ -37,14 +36,13 @@ router.route("/")
             page: Math.max(page || 1, 1),
             limit: Math.max(Math.min(limit || config.get("STANDARD_PAGINATION"), config.get("MAX_PAGINATION")), config.get("STANDARD_PAGINATION"))
         };
-
-
         const query = {};
         if (ObjectId.isValid(req.query._id)) {
-            query._id = new ObjectId(req.query._id);
-        }
-        if (ObjectId.isValid(req.query.author)) {
-            query.author = new ObjectId(req.query.author);
+            query._id = req.query._id;
+        } else {
+            if (ObjectId.isValid(req.query.author)) {
+                query.author = new ObjectId(req.query.author);
+            }
         }
         MessageDriver.findPaginated(query, pagination)
             .then(result => {

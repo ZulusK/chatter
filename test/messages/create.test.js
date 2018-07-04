@@ -11,7 +11,7 @@ const config = require("@config");
 
 const rules = config.get("validationRules");
 
-describe("", () => {
+describe("create", () => {
 
     let TOKEN_ACCESS = null;
     let TOKEN_REFRESH = null;
@@ -139,7 +139,6 @@ describe("", () => {
         it("should reject with status 400, text.length>200", (done) => {
             const message=generateMessage();
             message.text+=message.text;
-            console.log(message.text.length)
             chai.request(server)
                 .post(URL)
                 .set("authorization", `Bearer ${TOKEN_ACCESS.token}`)
