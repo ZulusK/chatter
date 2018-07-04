@@ -3,7 +3,8 @@ const mongoose=require("mongoose");
 
 const MessageSchema=mongoose.Schema({
     author:{
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User",
         required:true,
     },
     text:{

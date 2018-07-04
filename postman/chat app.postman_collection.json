@@ -309,7 +309,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4ab7e605-fd71-4dd6-8949-0e2ea8e0078d",
+								"id": "0ad9c553-5a1e-483b-8b7c-7c42b455bb64",
 								"type": "text/javascript",
 								"exec": [
 									"const jsonData = pm.response.json();",
@@ -323,7 +323,7 @@
 									"   ",
 									"})",
 									"pm.test(\"Error msg tells us, we didn't send invalid password\",function(){",
-									"     pm.expect(jsonData.errors.password.msg).to.equal(\"password must contain at least 1 uppercase letter, 1 digit and 1 special symbol (!,#,$,%,&,?)\");",
+									"     pm.expect(jsonData.errors.password.msg).to.equal(\"password must be at least 8 symbols, and less than 16\");",
 									"})"
 								]
 							}
@@ -345,7 +345,7 @@
 							"formdata": [
 								{
 									"key": "username",
-									"value": "3asnasl",
+									"value": "3asnasl{{$randomInt}}",
 									"type": "text",
 									"description": ""
 								},
@@ -1167,7 +1167,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e02deaa9-a65e-4ac0-b9db-24aceac6bf72",
+								"id": "a050d103-c359-408c-8151-8ee6eddc128e",
 								"type": "text/javascript",
 								"exec": [
 									"",
@@ -1254,7 +1254,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "bffc0148-a02e-48b1-b188-35c7d9a3211e",
+								"id": "933f0798-fd15-46c6-a775-5633c4f8c26d",
 								"type": "text/javascript",
 								"exec": [
 									"",
@@ -1279,7 +1279,7 @@
 									"",
 									"pm.test(\"Each doc have specified author\",function(){",
 									"    jsonData.docs.forEach(x=>{",
-									"        pm.expect(x.author).to.equal(pm.environment.get(\"current_username\"))",
+									"        pm.expect(x.author).to.equal(pm.environment.get(\"current_id\"))",
 									"    })",
 									"});"
 								]
@@ -1303,7 +1303,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/messages?author={{current_username}}&limit=17",
+							"raw": "{{host}}/messages?author={{current_id}}&limit=17",
 							"host": [
 								"{{host}}"
 							],
@@ -1313,7 +1313,7 @@
 							"query": [
 								{
 									"key": "author",
-									"value": "{{current_username}}"
+									"value": "{{current_id}}"
 								},
 								{
 									"key": "limit",

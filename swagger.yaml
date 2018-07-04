@@ -45,7 +45,7 @@ paths:
         type: string
       - name: author
         in: query
-        description: Author's username
+        description: Author's ID
         required: false
         type: string
       responses:
@@ -284,10 +284,10 @@ definitions:
         example: "1530700954172"
       author:
         type: string
-        example: Zulus99
+        example: 507f1f77bcf86cd7994390AS
     example:
       createdAt: "1530700954172"
-      author: Zulus99
+      author: 507f1f77bcf86cd7994390AS
       id: 507f1f77bcf86cd799439011
       text: This is Sparta
       updatedAt: "1530700954172"
@@ -316,12 +316,12 @@ definitions:
       total: 0
       docs:
       - createdAt: "1530700954172"
-        author: Zulus99
+        author: 507f1f77bcf86cd7994390AS
         id: 507f1f77bcf86cd799439011
         text: This is Sparta
         updatedAt: "1530700954172"
       - createdAt: "1530700954172"
-        author: Zulus99
+        author: 507f1f77bcf86cd7994390AS
         id: 507f1f77bcf86cd799439011
         text: This is Sparta
         updatedAt: "1530700954172"
