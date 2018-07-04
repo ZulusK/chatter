@@ -10,3 +10,4 @@ chai.use(chaiPromised);
 require("@server");
 //Include tests
 require("./user");
+require("./messages");

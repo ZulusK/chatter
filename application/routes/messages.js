@@ -6,7 +6,6 @@ const config = require("@config");
 const rules = config.get("validationRules");
 // const log = require("@utils").logger(module);
 const passport = require("passport");
-const _ = require("lodash");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 router.route("/")
@@ -15,7 +14,7 @@ router.route("/")
             .exists()
             .withMessage('text is required')
             .isLength(rules.message.length)
-            .withMessage(`text must be less, that ${rules.message.length} symbols`)
+            .withMessage(`text must be less, that ${rules.message.length.max} symbols`)
 
     ], (req, res, next) => {
         const errors = validationResult(req);
@@ -47,7 +46,6 @@ router.route("/")
         if (ObjectId.isValid(req.query.author)) {
             query.author = new ObjectId(req.query.author);
         }
-        console.log(query);
         MessageDriver.findPaginated(query, pagination)
             .then(result => {
                 return res.json({
