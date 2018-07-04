@@ -29,6 +29,12 @@ module.exports = {
     TOKEN_GENERATOR_ALGORITHM: "HS256",
 
     validationRules: {
+        username:{
+            length:{
+                max:20,
+                min:3
+            },
+        },
         message: {
             length: {
                 max: 200

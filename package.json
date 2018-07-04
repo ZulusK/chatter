@@ -1,6 +1,6 @@
 {
-  "name": "comics-space",
-  "version": "0.0.1",
+  "name": "chatter",
+  "version": "1.0.0",
   "engines": {
     "node": ">=8.0.0"
   },
