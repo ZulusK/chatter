@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const {body, validationResult} = require('express-validator/check');
-const {matchedData} = require('express-validator/filter');
+const {body, validationResult} = require("express-validator/check");
+const {matchedData} = require("express-validator/filter");
 const UserDriver = require("@db").UserDriver;
 const config = require("@config");
 const rules = config.get("validationRules");
@@ -8,11 +8,13 @@ const rules = config.get("validationRules");
 const passport = require("passport");
 
 router.post("/signup", [
-    body('username')
+    body("username")
         .exists()
-        .withMessage('username is required')
+        .withMessage("username is required")
+        .isLength({min:3,max:20})
+        .withMessage("username must be at least 3 symbols and less than 20 symbols")
         .isAlphanumeric()
-        .withMessage('username must contain only letters and numbers')
+        .withMessage("username must contain only letters and numbers")
         .custom(async v => {
             if (await UserDriver.contains({username: v})) {
                 throw new Error("this username is already in use");
@@ -20,7 +22,7 @@ router.post("/signup", [
         }),
     body("password")
         .exists()
-        .withMessage('password is required')
+        .withMessage("password is required")
         .isLength({min: 1})
         .withMessage(`password must be at least ${rules.password.length.min} symbols, and less than ${rules.password.length.max}`)
         .matches(rules.password.regExp)
@@ -43,7 +45,7 @@ router.post("/signup", [
         })
 });
 
-router.post("/signin", passport.authenticate(['basic'], {session: false}), (req, res) => {
+router.post("/signin", passport.authenticate(["basic"], {session: false}), (req, res) => {
     return res.json({
         tokens: req.user.generateJWT(),
         user: UserDriver.getPublicFields(req.user)

@@ -1,0 +1,389 @@
+---
+swagger: "2.0"
+info:
+  description: Chatter - a simple public chat.
+  version: 1.0.0
+  title: Chatter API
+  contact:
+    email: danil.kazim.99@gmail.com
+  license:
+    name: MIT
+    url: https://github.com/ZulusK/chatter/blob/master/LICENSE
+host: chatter-job-task.herokuapp.com
+basePath: /
+tags:
+- name: Message
+  description: Operation with messages
+- name: User
+  description: Operations with users
+schemes:
+- https
+paths:
+  /messages:
+    get:
+      tags:
+      - Message
+      summary: Gets some messages
+      description: Returns a list containing messages.
+      parameters:
+      - name: page
+        in: query
+        description: Page number
+        required: false
+        type: integer
+        minimum: 10.0
+      - name: limit
+        in: query
+        description: Number of messages returned
+        required: false
+        type: integer
+        minimum: 0
+      - name: _id
+        in: query
+        description: Id of message
+        required: false
+        type: string
+      - name: author
+        in: query
+        description: Author's username
+        required: false
+        type: string
+      responses:
+        200:
+          description: Paginated list of messages
+          schema:
+            $ref: '#/definitions/inline_response_200'
+          responseSchema:
+            type: object
+            required:
+            - docs
+            - limit
+            - page
+            - total
+            properties:
+              page:
+                type: integer
+                minimum: 1
+              limit:
+                type: integer
+                minimum: 10.0
+                maximum: 100.0
+              total:
+                type: integer
+                minimum: 0
+              docs:
+                type: array
+                items:
+                  $ref: '#/definitions/Message'
+    post:
+      tags:
+      - Message
+      summary: Creates a message
+      description: Adds a new message to the messages list.
+      consumes:
+      - multipart/form-data
+      parameters:
+      - name: text
+        in: formData
+        description: Text of message
+        required: true
+        type: string
+        maxLength: 200
+      responses:
+        200:
+          description: Created message
+          schema:
+            $ref: '#/definitions/Message'
+          responseSchema:
+            $ref: '#/definitions/Message'
+        400:
+          description: Bad request
+        401:
+          description: Unauthorized
+      security:
+      - JWT: []
+      - Basic: []
+  /user/signup:
+    post:
+      tags:
+      - User
+      summary: Register new user
+      description: |
+        By passing password and username you can create a new account
+      consumes:
+      - multipart/form-data
+      parameters:
+      - name: username
+        in: formData
+        required: true
+        type: string
+        pattern: ^[A-Za-z0-9]{3,20}$
+      - name: password
+        in: formData
+        required: true
+        type: string
+        maxLength: 16
+        minLength: 8
+      responses:
+        200:
+          description: Account created
+          schema:
+            $ref: '#/definitions/inline_response_200_1'
+          responseSchema:
+            type: object
+            properties:
+              user:
+                $ref: '#/definitions/User'
+              token:
+                $ref: '#/definitions/inline_response_200_1_token'
+        400:
+          description: Bad request
+  /user/signin:
+    post:
+      tags:
+      - User
+      summary: Login into account
+      description: |
+        By passing password and username you can get new JWT-tokens
+      consumes:
+      - multipart/form-data
+      parameters:
+      - name: username
+        in: header
+        required: true
+        type: string
+        pattern: ^[A-Za-z0-9]{3,20}$
+      - name: password
+        in: header
+        required: true
+        type: string
+        maxLength: 16
+        minLength: 8
+      responses:
+        200:
+          description: You have entered into your account
+          schema:
+            $ref: '#/definitions/inline_response_200_1'
+          responseSchema:
+            type: object
+            properties:
+              user:
+                $ref: '#/definitions/User'
+              token:
+                $ref: '#/definitions/inline_response_200_1_token'
+        401:
+          description: Unauthorized
+  /user/logout:
+    post:
+      tags:
+      - User
+      summary: Logout from all devices
+      description: |
+        After that all JWT tokens will outdated
+      consumes:
+      - multipart/form-data
+      parameters: []
+      responses:
+        200:
+          description: You have logout from all devices
+        401:
+          description: Unauthorized
+      security:
+      - JWT: []
+      - Basic: []
+  /user/access-token:
+    get:
+      tags:
+      - User
+      summary: Get new access token
+      description: |
+        Returns new generated token
+      parameters: []
+      responses:
+        200:
+          description: Returns new generated token
+          schema:
+            $ref: '#/definitions/inline_response_200_2'
+          responseSchema:
+            type: object
+            properties:
+              accessToken:
+                $ref: '#/definitions/Token'
+        401:
+          description: Unauthorized
+      security:
+      - JWT: []
+securityDefinitions:
+  Basic:
+    type: basic
+  JWT:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  Token:
+    type: object
+    required:
+    - expiredIn
+    - token
+    properties:
+      token:
+        type: string
+        format: jwt token
+        example: xxxxx.yyyyy.zzzzz
+      expiredIn:
+        type: integer
+    example:
+      expiredIn: 0
+      token: xxxxx.yyyyy.zzzzz
+  User:
+    type: object
+    required:
+    - id
+    - username
+    properties:
+      id:
+        type: string
+        format: hexdecimal string
+        example: 507f1f77bcf86cd799439011
+      username:
+        type: string
+        example: Zulus66
+        pattern: ^[A-Za-z0-9]{3,20}$
+      createdAt:
+        type: string
+        format: int32
+        example: "1530700954172"
+      updatedAt:
+        type: string
+        format: int32
+        example: "1530700954172"
+    example:
+      createdAt: "1530700954172"
+      id: 507f1f77bcf86cd799439011
+      username: Zulus66
+      updatedAt: "1530700954172"
+  Message:
+    required:
+    - author
+    - id
+    properties:
+      id:
+        type: string
+        example: 507f1f77bcf86cd799439011
+      text:
+        type: string
+        example: This is Sparta
+      createdAt:
+        type: string
+        format: int32
+        example: "1530700954172"
+      updatedAt:
+        type: string
+        format: int32
+        example: "1530700954172"
+      author:
+        type: string
+        example: Zulus99
+    example:
+      createdAt: "1530700954172"
+      author: Zulus99
+      id: 507f1f77bcf86cd799439011
+      text: This is Sparta
+      updatedAt: "1530700954172"
+  inline_response_200:
+    required:
+    - docs
+    - limit
+    - page
+    - total
+    properties:
+      page:
+        type: integer
+        minimum: 1
+      limit:
+        type: integer
+        minimum: 10.0
+        maximum: 100.0
+      total:
+        type: integer
+        minimum: 0
+      docs:
+        type: array
+        items:
+          $ref: '#/definitions/Message'
+    example:
+      total: 0
+      docs:
+      - createdAt: "1530700954172"
+        author: Zulus99
+        id: 507f1f77bcf86cd799439011
+        text: This is Sparta
+        updatedAt: "1530700954172"
+      - createdAt: "1530700954172"
+        author: Zulus99
+        id: 507f1f77bcf86cd799439011
+        text: This is Sparta
+        updatedAt: "1530700954172"
+      limit: 64
+      page: 1
+  inline_response_200_1_token:
+    properties:
+      accessToken:
+        $ref: '#/definitions/Token'
+      refreshToken:
+        $ref: '#/definitions/Token'
+    example:
+      accessToken:
+        expiredIn: 0
+        token: xxxxx.yyyyy.zzzzz
+      refreshToken:
+        expiredIn: 0
+        token: xxxxx.yyyyy.zzzzz
+  inline_response_200_1:
+    properties:
+      user:
+        $ref: '#/definitions/User'
+      token:
+        $ref: '#/definitions/inline_response_200_1_token'
+    example:
+      user:
+        createdAt: "1530700954172"
+        id: 507f1f77bcf86cd799439011
+        username: Zulus66
+        updatedAt: "1530700954172"
+      token:
+        accessToken:
+          expiredIn: 0
+          token: xxxxx.yyyyy.zzzzz
+        refreshToken:
+          expiredIn: 0
+          token: xxxxx.yyyyy.zzzzz
+  inline_response_200_2:
+    properties:
+      accessToken:
+        $ref: '#/definitions/Token'
+    example:
+      accessToken:
+        expiredIn: 0
+        token: xxxxx.yyyyy.zzzzz
+parameters:
+  page:
+    name: page
+    in: query
+    description: Page number
+    required: false
+    type: integer
+    minimum: 10.0
+  limit:
+    name: limit
+    in: query
+    description: Number of messages returned
+    required: false
+    type: integer
+    minimum: 0
+responses:
+  Standard400ErrorResponse:
+    description: Bad request
+  Standard401ErrorResponse:
+    description: Unauthorized

@@ -5,6 +5,8 @@
 [DEMO](https://chatter-job-task.herokuapp.com/)
 
 [Postman test](https://documenter.getpostman.com/view/3031705/RWM6xsGV)
+
+[Swagger API doc](https://app.swaggerhub.com/apis/ZulusK/chatter/1.0.0#/)
 # Short Description
 The NodeJS app - a simple public chat. Where unauthenticated users can post text and everyone else can read them.
 Posts stored in database, and users can get or create posts by using REST API.
@@ -29,7 +31,7 @@ Posts stored in database, and users can get or create posts by using REST API.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 [travis-master]: https://travis-ci.org/ZulusK/chatter.svg?branch=master
 [travis-dev]:https://travis-ci.org/ZulusK/chatter.svg?branch=dev
