@@ -9,4 +9,4 @@ chai.use(chaiPromised);
 //run server
 require("@server");
 //Include tests
-require("./routes/index.test");
+require("./user");

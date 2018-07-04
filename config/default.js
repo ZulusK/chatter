@@ -24,7 +24,7 @@ module.exports = {
     TOKEN_SECRET_SALT_LENGTH: 5,
     TOKEN_SALT_ACCESS: process.env.TOKEN_SALT_ACCESS,
     TOKEN_SALT_REFRESH: process.env.TOKEN_SALT_REFRESH,
-    TOKEN_LIFE_ACCESS: 1e3 * 60 * 60, // 1 minute
+    TOKEN_LIFE_ACCESS: 1e3 * 60 * 60, // 1 hour
     TOKEN_LIFE_REFRESH: 1e3 * 60 * 60 * 24, // 1 day
     TOKEN_GENERATOR_ALGORITHM: "HS256",
 

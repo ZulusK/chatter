@@ -6,10 +6,8 @@ const UserModel = require("@db").UserDriver.model;
 const URL = "/user/signin";
 const URL_SIGNUP = "/user/signup";
 
-const ObjectId = require("mongoose").Types.ObjectId;
 const config = require("@config");
 
-const rules = config.get("validationRules");
 
 function generateUser() {
     return {
@@ -18,11 +16,10 @@ function generateUser() {
     };
 }
 
-let USER = null;
-let STORED_USER = null;
-
 
 describe("/signin", () => {
+    let USER = null;
+    let STORED_USER = null;
     before((done) => {
         UserModel.remove({}).exec().then(() => {
             USER = generateUser();
@@ -36,9 +33,10 @@ describe("/signin", () => {
         });
     });
     after((done) => {
-        UserModel.remove({}, err => done(err));
+        UserModel.remove({}, err => {
+            done(err)
+        });
     });
-
     describe(" valid username and psw", () => {
         it("should return user, associated with received credentials", (done) => {
             chai.request(server)

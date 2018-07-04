@@ -21,7 +21,9 @@ describe("/signup", () => {
         UserModel.remove({}, err => done(err));
     });
     after((done) => {
-        UserModel.remove({}, err => done(err));
+        UserModel.remove({}, err => {
+            done(err)
+        });
     });
     describe("Send valid username and psw", () => {
         it("should create user, with specified valid fields", (done) => {
