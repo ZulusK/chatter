@@ -1,18 +1,13 @@
 language: node_js
 node_js:
 - node
-sudo: false
+sudo: required
 before_script:
 - mongo mydb_test --eval 'db.createUser({user:"chatter_app",pwd:"chatter",roles:["readWrite"]});'
 script:
 - npm run lint
 services:
 - mongodb
-- docker
 cache:
   directories:
   - node_modules
-after_success:
-- test $TRAVIS_BRANCH = "master" &&  echo "$DOCKER_PASSWORD" && docker login -u "$DOCKER_USERNAME" --password-stdin
-- test $TRAVIS_BRANCH = "master" && docker build -t registry.heroku.com/chatter/web .
-- test $TRAVIS_BRANCH = "master" && docker push registry.heroku.com/chatter/web
