@@ -13,6 +13,6 @@ cache:
   directories:
   - node_modules
 after_success:
-- test $TRAVIS_BRANCH = "master" &&  docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+- test $TRAVIS_BRANCH = "master" &&  docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 - test $TRAVIS_BRANCH = "master" && docker build -t registry.heroku.com/chatter/web .
 - test $TRAVIS_BRANCH = "master" && docker push registry.heroku.com/chatter/web
