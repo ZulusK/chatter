@@ -20,18 +20,24 @@ describe("/signup", () => {
     beforeEach((done) => {
         UserModel.remove({}, err => done(err));
     });
+    after((done) => {
+        UserModel.remove({}, err => done(err));
+    });
     describe("Send valid username and psw", () => {
         it("should create user, with specified valid fields", (done) => {
             let user = generateUser();
             chai.request(server)
                 .post(URL)
                 .send(user)
-                .end((err, res) => {
+                .end(async (err, res) => {
+                    const storedUser=await UserModel.findOne({username:user.username});
                     expect(res).have.status(200);
                     expect(res.body).to.have.all.keys(["user", "tokens"]);
                     expect(res.body.user).to.have.all.keys(["username", "createdAt", "updatedAt", "id"]);
                     expect(res.body.user.username).to.equal(user.username);
+                    expect(res.body.user.username).to.equal(storedUser.username);
                     expect(res.body.user.id).to.be.a("string");
+                    expect(res.body.user.id).to.equal(String(storedUser._id));
                     expect(ObjectId.isValid(res.body.user.id)).to.be.true;
                     done();
                 });
